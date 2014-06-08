@@ -23,6 +23,9 @@ I wrote this bundle basing on Symfony 2.3.13 for my own purposes, did not tested
 
         new Ex3v\FormErrorsBundle\Ex3vFormErrorsBundle(),
         
+
+then run `composer update` on your project to install.
+
         
 **USAGE**
 ---------
