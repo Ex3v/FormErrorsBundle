@@ -24,7 +24,7 @@
     },
     "target-dir" : "Ex3v/FormErrorsBundle",
     "repositories" : [{
-    ],
+    }],
     "extra" : {
     "branch-alias" : {
             "dev-master" : "master"
