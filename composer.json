@@ -1,0 +1,33 @@
+{
+    "name" : "ex3v/formerrorsbundle",
+    "description" : "A service and Twig method that displays all form errors on all levels.",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "Maciej Szkamruk",
+        "email" : "ex3v@ex3v.com"
+    }],
+    "keywords" : [
+        "form errors", 
+	"twig extension", 
+	"form", 
+	"twig"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Ex3v\\FormErrorsBundle" : ""
+        }
+    },
+    "target-dir" : "Ex3v/FormErrorsBundle",
+    "repositories" : [{
+    ],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "master"
+        }
+    }
+}
