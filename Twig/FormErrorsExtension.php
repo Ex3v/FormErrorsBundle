@@ -1,14 +1,9 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of safeCodeExtension
+ * FormErrorsExtension - extension to list all errors from form.
  *
- * @author ex3v
+ * @author Maciej Szkamruk <ex3v@ex3v.com>
  */
 
 namespace Ex3v\FormErrorsBundle\Twig;
@@ -37,6 +32,15 @@ class FormErrorsExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * Main Twig extension. Call this in Twig to get formatted output of your form errors.
+     * Note that you have to provide form as Form object, not FormView.
+     * 
+     * @param \Symfony\Component\Form\Form $form
+     * @param string $tag html tag, in which all errors will be packed. If you will provide 'li', 'ul' wrapper will be added
+     * @param type $class class of each error. Default is none
+     * @return string
+     */
     public function allFormErrors(Form $form, $tag = 'li', $class = '')
     {
         $errorsList = $this->parser->parseErrors($form);
@@ -48,7 +52,7 @@ class FormErrorsExtension extends \Twig_Extension
             }
 
             foreach ($errorsList as $item) {
-                $return.=$this->handleErrors($item, $tag);
+                $return.=$this->handleErrors($item, $tag, $class);
             }
 
             if ($tag == 'li') {
@@ -59,7 +63,14 @@ class FormErrorsExtension extends \Twig_Extension
         return $return;
     }
 
-    private function handleErrors($item, $tag)
+    /**
+     * Handle single error creation
+     * @param type $item
+     * @param type $tag
+     * @param type $class
+     * @return string
+     */
+    private function handleErrors($item, $tag, $class)
     {
 
         $return = '';
@@ -69,7 +80,7 @@ class FormErrorsExtension extends \Twig_Extension
         if (count($errors)) {
             /* @var $error \Symfony\Component\Form\FormError */
             foreach ($errors as $error) {
-                $return.='<' . $tag . '>';
+                $return.='<' . $tag . ' class="'.$class.'">';
                 $return.=$item['label'];
                 $return.=': ';
                 $return.=$error->getMessage();

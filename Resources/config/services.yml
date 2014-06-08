@@ -7,7 +7,7 @@ services:
     class: "%formErrors.class%"
     
   ex3v.twig.all_form_errors_extension:
-          class: Ex3v\formErrorsBundle\Twig\FormErrorsExtension
+          class: Ex3v\FormErrorsBundle\Twig\FormErrorsExtension
           arguments: [@formErrorsParser]
           tags:
               - { name: twig.extension }
