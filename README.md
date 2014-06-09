@@ -56,7 +56,7 @@ You can customize your output by adding additional parameters:
 
         {{ all_form_errors(formFull, "div", "myclass") }}
         
-This will produce errors list in which each error is wrapped in separate div, having "myclass" as it's class:
+This will produce errors list in which each error is wrapped in separate div, having "myclass" as its class:
 
         <div class="myclass">
             Title: field cannot be empty.
