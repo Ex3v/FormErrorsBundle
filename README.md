@@ -74,7 +74,7 @@ If you want more control over your errors, you also can call service that parses
 $errors array will contain arrays composed of:
 - field name
 - field label
-- Symfony\Component\Form\FormError error object, that contains error message in two formats (oryginal and translated) as well as field value.
+- Symfony\Component\Form\FormError error object, that contains error message in two formats (original and translated) as well as field value.
 
 Any suggestions or contributions are warmly welcome. Happy coding!
 
