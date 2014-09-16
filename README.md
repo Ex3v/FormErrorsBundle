@@ -1,7 +1,7 @@
 FormErrorsBundle
 ================
 
-[![knpbundles.com](http://knpbundles.com/Ex3v/FormErrorsBundle/badge-short)](http://knpbundles.com/Ex3v/FormErrorsBundle)
+[![knpbundles.com](http://knpbundles.com/Ex3v/FormErrorsBundle/badge)](http://knpbundles.com/Ex3v/FormErrorsBundle)
 
 This bundle contains two things:
 - a service that exports all errors from form to array
