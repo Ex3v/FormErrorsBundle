@@ -1,6 +1,8 @@
 FormErrorsBundle
 ================
 
+[![knpbundles.com](http://knpbundles.com/Ex3v/FormErrorsBundle/badge-short)](http://knpbundles.com/Ex3v/FormErrorsBundle)
+
 This bundle contains two things:
 - a service that exports all errors from form to array
 - Twig extension that helps display them as list
