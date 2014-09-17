@@ -3,6 +3,8 @@ FormErrorsBundle
 
 [![knpbundles.com](http://knpbundles.com/Ex3v/FormErrorsBundle/badge)](http://knpbundles.com/Ex3v/FormErrorsBundle)
 
+[![Latest Stable Version](https://poser.pugx.org/ex3v/formerrorsbundle/v/stable.svg)](https://packagist.org/packages/ex3v/formerrorsbundle) [![Total Downloads](https://poser.pugx.org/ex3v/formerrorsbundle/downloads.svg)](https://packagist.org/packages/ex3v/formerrorsbundle) [![License](https://poser.pugx.org/ex3v/formerrorsbundle/license.svg)](https://packagist.org/packages/ex3v/formerrorsbundle)
+
 This bundle contains two things:
 - a service that exports all errors from form to array
 - Twig extension that helps display them as list
