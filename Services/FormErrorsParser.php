@@ -2,7 +2,8 @@
 
 namespace Ex3v\FormErrorsBundle\Services;
 
-use \Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormError;
 
 /**
  * This software is provided as-is on the terms of MIT License. 
@@ -27,14 +28,15 @@ use \Symfony\Component\Form\Form;
  */
 class FormErrorsParser
 {
-        
+
     /**
      * This is the main method of service. Pass form object and call it to get resulting array.
-     * 
-     * @param \Symfony\Component\Form\Form $form
-     * @return array
+     *
+     * @param FormInterface $form
+     *
+     * @return FormError[]
      */
-    public function parseErrors(Form $form)
+    public function parseErrors(FormInterface $form)
     {
         $results = array();
         return $this->realParseErrors($form, $results);
@@ -43,10 +45,12 @@ class FormErrorsParser
 
     /**
      * This does the actual job. Method travels through all levels of form recursively and gathers errors.
-     * @param \Symfony\Component\Form\Form $form
+     * @param FormInterface $form
      * @param array &$results
+     *
+     * @return FormError[]
      */
-    private function realParseErrors(Form $form, array &$results)
+    private function realParseErrors(FormInterface $form, array &$results)
     {
         
         /*
@@ -69,7 +73,7 @@ class FormErrorsParser
 
         if(count($children)){
             foreach($children as $child){
-                if($child instanceof Form){
+                if($child instanceof FormInterface){
                     $this->realParseErrors($child, $results);                   
                 }
             }
@@ -77,7 +81,4 @@ class FormErrorsParser
         
         return $results;
     }
-
 }
-
-?>
