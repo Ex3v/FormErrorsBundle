@@ -62,6 +62,12 @@ class FormErrorsParser
             $config = $form->getConfig();
             $name = $form->getName();
             $label = $config->getOption('label');
+            /*
+             * If a label isn't explicitly set, use humanized field name
+             */
+            if (empty($label)) {
+                $label = ucfirst(trim(strtolower(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $name))));
+            }
             $results[] = array('name' => $name, 'label' => $label, 'errors' => $errors);
         }
         
