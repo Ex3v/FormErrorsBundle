@@ -13,7 +13,7 @@ There already is form method getErrorsAsString(), but it does not provide you wi
 
 **DISCLAIMER**
 --------------
-I wrote this bundle basing on Symfony 2.3.13 for my own purposes, did not tested on other versions, but having in mind what Fabien said about backwards compability, it should work at least on 2.4 and any future relase of Symfony2, as well as on previous versions. Remember that I don't guarantee this, so feel free to test, fork and make your changes.
+I wrote this bundle basing on Symfony 2.3.13 for my own purposes, did not tested on other versions, but having in mind what Fabien said about backwards compatibility, it should work at least on 2.4 and any future relase of Symfony2, as well as on previous versions. Remember that I don't guarantee this, so feel free to test, fork and make your changes.
 
 
 **INSTALLATION**
