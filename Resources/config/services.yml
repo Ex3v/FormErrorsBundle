@@ -1,13 +1,15 @@
 parameters:
-  formErrors.class: Ex3v\FormErrorsBundle\Services\FormErrorsParser
+    formErrors.class: Ex3v\FormErrorsBundle\Services\FormErrorsParser
 
 
 services:
-  formErrorsParser:
-    class: "%formErrors.class%"
+    formErrorsParser:
+        class: "%formErrors.class%"
     
-  ex3v.twig.all_form_errors_extension:
-          class: Ex3v\FormErrorsBundle\Twig\FormErrorsExtension
-          arguments: [@formErrorsParser]
-          tags:
-              - { name: twig.extension }
+    ex3v.twig.all_form_errors_extension:
+        class: Ex3v\FormErrorsBundle\Twig\FormErrorsExtension
+        arguments:
+            - '@formErrorsParser'
+            - '@translator'
+        tags:
+            - { name: twig.extension }
