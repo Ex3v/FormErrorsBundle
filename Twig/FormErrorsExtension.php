@@ -10,6 +10,7 @@ namespace Ex3v\FormErrorsBundle\Twig;
 
 use Symfony\Component\Form\Form;
 use Ex3v\FormErrorsBundle\Services\FormErrorsParser;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class FormErrorsExtension extends \Twig_Extension
 {
@@ -20,11 +21,11 @@ class FormErrorsExtension extends \Twig_Extension
      */
     private $parser;
     /**
-     * @var Translator
+     * @var TranslatorInterface 
      */
     private $trans ;
 	
-    public function __construct(FormErrorsParser $parser, Translator $trans)
+    public function __construct(FormErrorsParser $parser, TranslatorInterface $trans)
     {
         $this->parser = $parser;
 		$this->trans =  $trans ;
