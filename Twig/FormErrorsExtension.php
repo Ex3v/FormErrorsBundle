@@ -20,22 +20,16 @@ class FormErrorsExtension extends \Twig_Extension
      * @var \Ex3v\FormErrorsBundle\Services\FormErrorsParser
      */
     private $parser;
-    /**
-     * @var TranslatorInterface 
-     */
-    private $trans ;
-	
-    public function __construct(FormErrorsParser $parser, Translator $trans)
+
+    public function __construct(FormErrorsParser $parser)
     {
         $this->parser = $parser;
-        
-        $this->trans = $trans ;
     }
 
     public function getFunctions()
     {
         return array(
-            'all_form_errors' => new \Twig_Function_Method($this, 'allFormErrors', array("is_safe" => array("html")))
+            new \Twig_SimpleFunction('all_form_errors', array($this, 'allFormErrors'), array("is_safe" => array("html")))
         );
     }
 
@@ -88,7 +82,7 @@ class FormErrorsExtension extends \Twig_Extension
             /* @var $error \Symfony\Component\Form\FormError */
             foreach ($errors as $error) {
                 $return.='<' . $tag . ' class="'.$class.'">';
-                $return .= $this->trans->trans($item['label'], array(), $item['translation']);
+                $return .= $item['label'];
                 $return.=': ';
                 $return .= $error->getMessage();  // The translator has already translated any validation error.
                 $return.="</" . $tag . '>';

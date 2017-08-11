@@ -4,6 +4,7 @@ namespace Ex3v\FormErrorsBundle\Services;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * This software is provided as-is on the terms of MIT License. 
@@ -28,6 +29,16 @@ use Symfony\Component\Form\FormError;
  */
 class FormErrorsParser
 {
+
+    private $translator;
+
+    /**
+     * FormErrorsParser constructor.
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(TranslatorInterface $translator){
+        $this->translator = $translator;
+    }
 
     /**
      * This is the main method of service. Pass form object and call it to get resulting array.
@@ -56,20 +67,35 @@ class FormErrorsParser
         /*
          * first check if there are any errors bound for this element
          */
-        $errors = $form->getErrors();
+        $errorsIterator = $form->getErrors();
         
-        if(count($errors)){
+        if(count($errorsIterator)){
+
             $config = $form->getConfig();
-            $name = $form->getName();
-            $label = $config->getOption('label');
-			$translation = $this->getTranslationDomain($form);
+            $name   = $form->getName();
+            $label  = $config->getOption('label');
+
+			$translationDomain = $this->getTranslationDomain($form);
+
             /*
              * If a label isn't explicitly set, use humanized field name
              */
             if (empty($label)) {
                 $label = ucfirst(trim(strtolower(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $name))));
             }
-            $results[] = array('name' => $name, 'label' => $label, 'errors' => $errors);
+
+            //Getting rid of the form object allows more convenient use when building APIs
+            //We are looping through the FormErrorIterator to get just the messages
+            $errorMessages = array();
+            foreach ($errorsIterator as $error) {
+                $errorMessages[] = $error;
+            }
+
+            $results[] = array(
+                'name'   => $name,
+                'label'  => $this->translator->trans($label, array(), $translationDomain),
+                'errors' => $errorMessages
+            );
         }
         
         /*
@@ -100,15 +126,15 @@ class FormErrorsParser
     private function getTranslationDomain(FormInterface $form)
     {
         $translation = $form->getConfig()->getOption('translation_domain');
-		if (empty($translation)) {
-			$parent = $form->getParent();
-			while (empty($translation)) {
-				$translation = $parent->getConfig()->getOption('translation_domain');
-				$parent = $parent->getParent();
-				if (empty($parent) && empty($translation))
-					$tranlsation = 'messages';
-			}
-		}
+        $parent = $form->getParent();
+        if ($parent instanceof FormInterface && empty($translation)) {
+            while (empty($translation)) {
+                $translation = $parent->getConfig()->getOption('translation_domain');
+                $parent = $parent->getParent();
+                if (empty($parent) && empty($translation))
+                    $translation = 'messages';
+            }
+        }
 		return $translation = $translation === 'messages' ? null : $translation ;  // Allow the Symfony Default setting to be used by returning null.
 	}
 }
